@@ -1,0 +1,24 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+/* 
+  npx prisma migrate dev command is used to update your database structure 
+  while you are developing your application.
+  It acts as a bridge between your schema.prisma file 
+  and your actual SQLite database file (dev.db).
+*/
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Snippet {
+  id Int @id @default(autoincrement())
+  title String
+  code String
+}
