@@ -12,8 +12,11 @@ export default function CopyButton({ code }: { code: string }) {
     };
 
     return (
-        <button onClick={handleCopy} className="p-2 border rounded text-sm">
-            {copied ? 'Copied!' : 'Copy'}
+        <button
+            onClick={handleCopy}
+            className="px-3 py-1.5 text-sm border border-zinc-700 rounded-md text-zinc-300 hover:bg-zinc-800 transition-colors min-w-[72px]"
+        >
+            {copied ? '✓ Copied' : 'Copy'}
         </button>
     );
 }

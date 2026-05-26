@@ -25,20 +25,31 @@ export default async function SnippetShowPage(props: SnippetShowPageProps) {
     const deleteSnippetAction = deleteSnippet.bind(null, snippet.id);
 
     return (
-        <div className="">
-            <div className="flex m-4 justify-between items-center">
+        <div>
+            <Link href="/" className="text-zinc-400 hover:text-zinc-200 text-sm transition-colors mb-6 inline-flex items-center gap-1">
+                ← Back to snippets
+            </Link>
+
+            <div className="flex justify-between items-start mt-4 mb-5">
                 <div className="flex items-center gap-3">
-                    <h1 className="text-xl font-bold">{snippet.title}</h1>
-                    <span className="text-sm text-gray-500 border rounded px-2 py-1">{snippet.language}</span>
+                    <h1 className="text-2xl font-bold text-zinc-50">{snippet.title}</h1>
+                    <span className="text-xs font-mono text-indigo-400 bg-indigo-950 border border-indigo-900 px-2 py-0.5 rounded">
+                        {snippet.language}
+                    </span>
                 </div>
                 <div className="flex gap-2">
                     <CopyButton code={snippet.code} />
-                    <Link href={`/snippets/${snippet.id}/edit`} className="p-2 border rounded">Edit</Link>
+                    <Link
+                        href={`/snippets/${snippet.id}/edit`}
+                        className="px-3 py-1.5 text-sm border border-zinc-700 rounded-md text-zinc-300 hover:bg-zinc-800 transition-colors"
+                    >
+                        Edit
+                    </Link>
                     <DeleteButton action={deleteSnippetAction} />
-                    <Link href="/" className="p-2 border rounded">Back</Link>
                 </div>
             </div>
-            <pre className="p-3 border rounded bg-gray-200 border-gray-200">
+
+            <pre className="p-5 rounded-lg bg-zinc-900 border border-zinc-800 overflow-x-auto text-sm text-zinc-300 font-mono leading-relaxed">
                 <code>{snippet.code}</code>
             </pre>
         </div>

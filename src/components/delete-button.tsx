@@ -7,7 +7,10 @@ export default function DeleteButton({ action }: { action: () => Promise<void> }
     };
 
     return (
-        <button onClick={handleClick} className="p-2 border rounded">
+        <button
+            onClick={handleClick}
+            className="px-3 py-1.5 text-sm border border-red-900 rounded-md text-red-400 hover:bg-red-950 transition-colors"
+        >
             Delete
         </button>
     );
