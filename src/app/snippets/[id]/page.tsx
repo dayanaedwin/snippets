@@ -4,6 +4,7 @@ import { db } from "@/db";
 import { deleteSnippet } from '@/actions';
 import CopyButton from '@/components/copy-button';
 import DeleteButton from '@/components/delete-button';
+import CodeBlock from '@/components/code-block';
 
 interface SnippetShowPageProps {
     params: Promise<{
@@ -49,9 +50,7 @@ export default async function SnippetShowPage(props: SnippetShowPageProps) {
                 </div>
             </div>
 
-            <pre className="p-5 rounded-lg bg-zinc-900 border border-zinc-800 overflow-x-auto text-sm text-zinc-300 font-mono leading-relaxed">
-                <code>{snippet.code}</code>
-            </pre>
+            <CodeBlock code={snippet.code} language={snippet.language} />
         </div>
     );
 }
