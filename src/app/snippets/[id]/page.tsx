@@ -39,3 +39,14 @@ export default async function SnippetShowPage(props: SnippetShowPageProps) {
         </div>
     );
 }
+
+// Tells Next.js which [id] values to pre-render at build time as static pages.
+// Without this, dynamic routes are rendered on-demand (SSR) for every request.
+// The returned array of params causes Next.js to generate one static HTML file
+// per snippet, enabling the Full Route Cache for each page.
+export async function generateStaticParams() {
+    const snippets = await db.snippet.findMany();
+
+    // id must be a string — Next.js route params are always strings.
+    return snippets.map(snippet => ({ id: snippet.id.toString() }));
+}
