@@ -4,10 +4,10 @@ import { db } from "@/db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export async function editSnippet(id: number, code: string) {
+export async function editSnippet(id: number, code: string, language: string) {
     await db.snippet.update({
         where: { id },
-        data: { code },
+        data: { code, language },
     });
 
     // Purges the Full Route Cache for this specific snippet page so the updated
@@ -43,9 +43,11 @@ export async function createSnippet(formState: { message: string }, formData: Fo
     // DB errors are caught and surfaced as form messages instead of crashing.
     // redirect() is intentionally outside this block — it throws a NEXT_REDIRECT
     // error internally, and catching it would silently cancel the redirect.
+    const language = (formData.get('language') as string) || 'javascript';
+
     try {
         await db.snippet.create({
-            data: { title, code },
+            data: { title, code, language },
         });
     } catch (err: unknown) {
         if (err instanceof Error) {

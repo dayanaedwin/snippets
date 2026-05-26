@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { notFound } from "next/navigation";
 import { db } from "@/db";
 import { deleteSnippet } from '@/actions';
+import CopyButton from '@/components/copy-button';
+import DeleteButton from '@/components/delete-button';
 
 interface SnippetShowPageProps {
     params: Promise<{
@@ -25,12 +27,15 @@ export default async function SnippetShowPage(props: SnippetShowPageProps) {
     return (
         <div className="">
             <div className="flex m-4 justify-between items-center">
-                <h1 className="text-xl font-bold">{snippet.title}</h1>
-                <div className="flex gap-4">
+                <div className="flex items-center gap-3">
+                    <h1 className="text-xl font-bold">{snippet.title}</h1>
+                    <span className="text-sm text-gray-500 border rounded px-2 py-1">{snippet.language}</span>
+                </div>
+                <div className="flex gap-2">
+                    <CopyButton code={snippet.code} />
                     <Link href={`/snippets/${snippet.id}/edit`} className="p-2 border rounded">Edit</Link>
-                    <form action={deleteSnippetAction}>
-                        <button className="p-2 border rounded">Delete</button>
-                    </form>
+                    <DeleteButton action={deleteSnippetAction} />
+                    <Link href="/" className="p-2 border rounded">Back</Link>
                 </div>
             </div>
             <pre className="p-3 border rounded bg-gray-200 border-gray-200">
