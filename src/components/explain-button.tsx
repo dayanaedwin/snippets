@@ -46,6 +46,7 @@ export default function ExplainButton({ code, language }: { code: string; langua
 
     return (
         <div className="mt-4">
+            <div className="flex justify-end">
             <button
                 onClick={handleExplain}
                 disabled={loading}
@@ -63,6 +64,7 @@ export default function ExplainButton({ code, language }: { code: string; langua
                     '✦ Explain this code'
                 )}
             </button>
+            </div>
 
             {error && (
                 <div className="mt-3 p-3 bg-red-950 border border-red-800 rounded-md text-red-400 text-sm">

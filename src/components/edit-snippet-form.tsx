@@ -62,7 +62,7 @@ export default function EditSnippetForm({ snippet }: EditSnippetFormProps) {
                     type="submit"
                     className="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-5 py-2 rounded-md transition-colors"
                 >
-                    Save Changes
+                    Save
                 </button>
             </form>
         </div>
