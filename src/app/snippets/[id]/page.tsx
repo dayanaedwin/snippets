@@ -5,6 +5,7 @@ import { deleteSnippet } from '@/actions';
 import CopyButton from '@/components/copy-button';
 import DeleteButton from '@/components/delete-button';
 import CodeBlock from '@/components/code-block';
+import ExplainButton from '@/components/explain-button';
 
 interface SnippetShowPageProps {
     params: Promise<{
@@ -51,6 +52,7 @@ export default async function SnippetShowPage(props: SnippetShowPageProps) {
             </div>
 
             <CodeBlock code={snippet.code} language={snippet.language} />
+            <ExplainButton code={snippet.code} language={snippet.language} />
         </div>
     );
 }
